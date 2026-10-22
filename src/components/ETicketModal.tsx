@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   X,
   QrCode,
@@ -27,6 +27,22 @@ interface Props {
 }
 
 export default function ETicketModal({ details, onClose }: Props) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!details) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    dialogRef.current?.focus();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      previouslyFocused?.focus?.();
+    };
+  }, [details, onClose]);
+
   useEffect(() => {
     if (details) {
       document.body.style.overflow = 'hidden';
@@ -64,7 +80,14 @@ export default function ETicketModal({ details, onClose }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-primary-900/70 backdrop-blur-sm p-4 animate-fade-in">
-      <div className="my-8 w-full max-w-lg rounded-2xl bg-white shadow-2xl animate-slide-up">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="E-Tiket Tempahan"
+        tabIndex={-1}
+        className="my-8 w-full max-w-lg rounded-2xl bg-white shadow-2xl animate-slide-up focus:outline-none"
+      >
         {/* Header */}
         <div className="flex items-center justify-between rounded-t-2xl bg-primary-700 px-6 py-4 text-white">
           <div className="flex items-center gap-2">

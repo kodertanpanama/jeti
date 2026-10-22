@@ -4,6 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        navy: { DEFAULT: '#0A2540', 900: '#061829' },
+        offwhite: '#FAF8F4',
+        line: '#E6E2DA',
+        turq: { 50: '#E6F7F5', 200: '#7FDCD4', 300: '#45CABF', 500: '#00A896', 700: '#00756A', 800: '#005C50' },
+        cta: { 50: '#FFF1EB', 200: '#FFB89A', 300: '#FF9A6E', 500: '#FF6B35', 600: '#F25A22', 700: '#B83F12' },
         primary: {
           50: '#E6EDF5',
           100: '#C1D0E8',
@@ -63,7 +68,13 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        sans: ['Inter Variable', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Plus Jakarta Sans Variable', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        soft: '0 1px 2px rgba(10,37,64,.06), 0 1px 3px rgba(10,37,64,.04)',
+        card: '0 8px 24px -8px rgba(10,37,64,.18)',
+        cta: '0 8px 20px -6px rgba(255,107,53,.45)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
